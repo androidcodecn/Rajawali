@@ -41,6 +41,7 @@ import org.rajawali3d.examples.examples.lights.SpotLightFragment;
 import org.rajawali3d.examples.examples.loaders.AsyncLoadModelFragment;
 import org.rajawali3d.examples.examples.loaders.AwdFragment;
 import org.rajawali3d.examples.examples.loaders.FBXFragment;
+import org.rajawali3d.examples.examples.loaders.LoadDemoModelFragment;
 import org.rajawali3d.examples.examples.loaders.LoadModelFragment;
 import org.rajawali3d.examples.examples.loaders.LoaderGCodeFragment;
 import org.rajawali3d.examples.examples.materials.AnimatedGIFTextureFragment;
@@ -80,16 +81,16 @@ import java.util.LinkedList;
 import java.util.List;
 
 public final class DataSet {
-    
+
     private static volatile DataSet instance;
-    
+
     private final List<Category> categories;
-    
+
     DataSet() {
         categories = createCategories();
         categories.addAll(DataSetImpl.getInstance().getCategories());
     }
-    
+
     public static synchronized DataSet getInstance() {
         if (instance == null) {
             synchronized (DataSet.class) {
@@ -98,13 +99,18 @@ public final class DataSet {
                 }
             }
         }
-        
+
         return instance;
     }
 
     @NonNull
     static List<Category> createCategories() {
         List<Category> categories = new LinkedList<>();
+
+        categories.add(new Category(R.string.demo, new Example[]{
+                new Example(R.string.demo, LoadDemoModelFragment.class)
+        }));
+
         categories.add(new Category(R.string.category_general, new Example[]{
                 new Example(R.string.example_general_getting_started, BasicFragment.class),
                 new Example(R.string.example_general_skybox, SkyboxFragment.class),
@@ -204,5 +210,5 @@ public final class DataSet {
     public List<Category> getCategories() {
         return categories;
     }
-    
+
 }

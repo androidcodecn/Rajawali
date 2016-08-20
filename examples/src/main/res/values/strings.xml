@@ -81,4 +81,6 @@
     <string name="remove_cube">Remove Random Cube</string>
     <string name="example_scene_add_remove_objects">Add/Remove Children</string>
 
+    <string name="demo">demo</string>
+
 </resources>
